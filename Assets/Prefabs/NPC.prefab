@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c18386380de4de48b445af8ca2ab1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ragdollController: {fileID: 1795982048}
   animator: {fileID: 3026407464971442399}
   rootRb: {fileID: 5290731192617984319}
 --- !u!54 &229298256
@@ -1102,6 +1103,23 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &8155649039475722166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4054044970919396095, guid: 08dcf7dd3c0838b4b82122af4eb06e7c, type: 3}
+  m_PrefabInstance: {fileID: 5290731191604397385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1795982048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155649039475722166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6f79a5dd0b1f245a5bc81683695696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8551939738117997278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4594485383256524695, guid: 08dcf7dd3c0838b4b82122af4eb06e7c, type: 3}

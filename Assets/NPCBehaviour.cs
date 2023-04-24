@@ -2,16 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum NPCStates { 
+    idle,
+    walking,
+    running,
+    punched,
+    dead,
+    disabled
+}
+
 public class NPCBehaviour : MonoBehaviour
 {
+    [SerializeField]
+    RagdollController ragdollController;
+
     [SerializeField]
     Animator animator;
 
     [SerializeField]
     Rigidbody rootRb;
 
+    Collider capsuleCollider;
     Rigidbody rb;
 
+    NPCStates currentState;
     Vector3 pushDirection = Vector3.zero;
     bool  wasHit = false;
     bool dead = false;
@@ -19,6 +33,7 @@ public class NPCBehaviour : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        capsuleCollider = GetComponent<Collider>();
     }
 
     // Start is called before the first frame update
@@ -30,9 +45,22 @@ public class NPCBehaviour : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        switch (currentState)
         {
-            rootRb.AddForce(pushDirection * 60, ForceMode.Impulse);
+            case NPCStates.idle:
+                break;
+
+            case NPCStates.running:
+                break;
+
+            case NPCStates.walking:
+                break;
+
+            case NPCStates.punched:
+                break;
+
+            case NPCStates.dead:
+                break;
         }
     }
 
@@ -43,18 +71,18 @@ public class NPCBehaviour : MonoBehaviour
         {
             wasHit = true;
 
-            StartCoroutine(RagdollThrow(collision.transform.position));
+            capsuleCollider.enabled = false;
+
+            ragdollController.EnableRagdoll();
+
+            RagdollThrow(collision.transform.position);
         }
     }
 
-    IEnumerator RagdollThrow (Vector3 target)
+    void RagdollThrow (Vector3 target)
     {
         pushDirection = transform.position - target;
         pushDirection.Normalize();
-
-        animator.enabled = false;
-
-        yield return new WaitForFixedUpdate();
 
         rootRb.AddForce(pushDirection * 1500, ForceMode.Impulse);
     }
@@ -63,7 +91,7 @@ public class NPCBehaviour : MonoBehaviour
     {
         wasHit = false;
         dead = false;
-        animator.enabled = true;
+        ragdollController.DisableRagdoll();
         pushDirection = Vector3.zero;
     }
 }
