@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - DEBUG
+  - PunchCollider
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ragdoll
   - Water
   - UI
-  - 
+  - Obstacles
   - 
   - 
   - 

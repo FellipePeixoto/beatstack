@@ -28,8 +28,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         Vector3 directionXZ = new Vector3(playerInput.TouchMoveDirection.x, 0, playerInput.TouchMoveDirection.y);
         
-        transform.forward = directionXZ;
-        
+        transform.forward = directionXZ.Equals(Vector3.zero) ? transform.forward : directionXZ;
+
         characterController.SimpleMove(directionXZ * speed);
     }
 }
